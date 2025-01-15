@@ -1,31 +1,31 @@
-// Full animepahe.js script with API-based search integration
+// Remade animepahe.js script for AnimePahe based on AnimeWorld.js
 (function() {
     const baseUrl = "https://animepahe.ru";
 
-    // Fetch search results from the API
     async function searchResults(query) {
         const apiUrl = `${baseUrl}/api?m=search&q=${encodeURIComponent(query)}`;
         const results = [];
 
         try {
+            // Fetch data from the API
             const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
-            
+
             const data = await response.json();
 
+            // Parse the returned JSON data
             if (data && data.data) {
                 data.data.forEach(item => {
                     results.push({
-                        id: item.id,
                         title: item.title,
+                        href: `${baseUrl}/anime/${item.session}`,
                         type: item.type,
                         episodes: item.episodes,
                         status: item.status,
                         season: item.season,
                         year: item.year,
                         score: item.score,
-                        poster: item.poster,
-                        session: item.session
+                        poster: item.poster
                     });
                 });
             }
@@ -36,7 +36,6 @@
         return results;
     }
 
-    // Extract anime details (dummy implementation, update if needed)
     async function extractDetails(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
@@ -48,7 +47,6 @@
         return [{ description, aliases, airdate }];
     }
 
-    // Extract episodes list (dummy implementation, update if needed)
     async function extractEpisodes(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
@@ -65,7 +63,6 @@
         return episodes;
     }
 
-    // Extract stream URL (dummy implementation, update if needed)
     async function extractStreamUrl(html) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
