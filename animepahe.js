@@ -1,4 +1,4 @@
-// Adapted animepahe.js
+// Adapted animepahe.js based on provided core files
 (function() {
     const baseUrl = "https://animepahe.ru";
 
@@ -7,10 +7,10 @@
         const doc = parser.parseFromString(html, "text/html");
         const results = [];
 
-        const items = doc.querySelectorAll("div[class='content-anime'] a"); // Confirm div class structure
+        const items = doc.querySelectorAll(".search-results-wrap div"); // Adjusted based on search container structure
         items.forEach(item => {
-            const title = item.querySelector("h3")?.textContent.trim() || "";
-            const href = item.getAttribute("href");
+            const title = item.querySelector("a")?.textContent.trim() || "";
+            const href = item.querySelector("a")?.getAttribute("href");
             const image = item.querySelector("img")?.getAttribute("src") || "";
 
             if (title && href) {
@@ -39,9 +39,9 @@
         const doc = parser.parseFromString(html, "text/html");
         const episodes = [];
 
-        const items = doc.querySelectorAll("div.episodes-list a"); // Confirm div class structure
+        const items = doc.querySelectorAll(".episode-list div"); // Adjusted for episodes structure
         items.forEach((item, index) => {
-            const href = item.getAttribute("href");
+            const href = item.querySelector("a")?.getAttribute("href");
             if (href) {
                 episodes.push({ number: index + 1, href: baseUrl + href });
             }
