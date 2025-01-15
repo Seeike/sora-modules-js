@@ -7,7 +7,7 @@
         const doc = parser.parseFromString(html, "text/html");
         const results = [];
 
-        const items = doc.querySelectorAll(".search-results-wrap div"); // Adjusted based on search container structure
+        const items = doc.querySelectorAll("div.content-wrapper div.latest-release div.episode-list-wrapper div.episode-list div");
         items.forEach(item => {
             const title = item.querySelector("a")?.textContent.trim() || "";
             const href = item.querySelector("a")?.getAttribute("href");
@@ -25,11 +25,9 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
 
-        const description = doc.querySelector("div.synopsis p")?.textContent.trim() || "";
-        const aliases = Array.from(doc.querySelectorAll("div.alternative-names span"))
-            .map(span => span.textContent.trim())
-            .join(", ");
-        const airdate = doc.querySelector("span[class='aired']")?.textContent.trim() || "";
+        const description = doc.querySelector("div.synopsis")?.textContent.trim() || "";
+        const aliases = doc.querySelector("span.alternative-names")?.textContent.trim() || "";
+        const airdate = doc.querySelector("span.aired")?.textContent.trim() || "";
 
         return [{ description, aliases, airdate }];
     }
@@ -39,7 +37,7 @@
         const doc = parser.parseFromString(html, "text/html");
         const episodes = [];
 
-        const items = doc.querySelectorAll(".episode-list div"); // Adjusted for episodes structure
+        const items = doc.querySelectorAll("div.episode-list div");
         items.forEach((item, index) => {
             const href = item.querySelector("a")?.getAttribute("href");
             if (href) {
@@ -54,7 +52,7 @@
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
 
-        return doc.querySelector("video source")?.getAttribute("src") || "";
+        return doc.querySelector("video > source")?.getAttribute("src") || "";
     }
 
     window.searchResults = searchResults;
