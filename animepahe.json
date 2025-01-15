@@ -1,10 +1,10 @@
 {
-    "sourceName": "AnimePahe",
-    "author": "Seiike",
+    "sourceName": "AnimeWorld",
+    "author": "cranci1",
     "iconUrl": "https://animepahe.ru/favicon.ico",
     "version": "1.0.0",
     "language": "English",
     "baseUrl": "https://animepahe.ru",
-    "searchBaseUrl": "https://animepahe.ru/anime?search=%s",
-    "scriptUrl": "https://raw.githubusercontent.com/Seeike/sora-modules-js/refs/heads/main/animepahe.js?token=GHSAT0AAAAAAC5C3QK5BCCEQVKBTUMWUN7AZ4IFQKA"
+    "searchBaseUrl": "https://animepahe.ru/api?m=search&q=",
+    "scriptUrl": "https://raw.githubusercontent.com/cranci1/tests/refs/heads/main/animeworld/animeworld.js?token=GHSAT0AAAAAACYSHNISKDQL4NZEIBP66ETIZ4AGCZQ"
 }
