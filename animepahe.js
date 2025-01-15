@@ -1,4 +1,4 @@
-// Adapted animepahe.js based on provided core files
+// Finalized animepahe.js based on updated structure and developer console insights
 (function() {
     const baseUrl = "https://animepahe.ru";
 
@@ -7,14 +7,16 @@
         const doc = parser.parseFromString(html, "text/html");
         const results = [];
 
-        const items = doc.querySelectorAll("div.content-wrapper div.latest-release div.episode-list-wrapper div.episode-list div");
+        const items = doc.querySelectorAll("ul.search-results > li"); // Search container structure
         items.forEach(item => {
-            const title = item.querySelector("a")?.textContent.trim() || "";
+            const title = item.querySelector(".result-title")?.textContent.trim() || "";
             const href = item.querySelector("a")?.getAttribute("href");
-            const image = item.querySelector("img")?.getAttribute("src") || "";
+            const image = item.querySelector("img")?.getAttribute("data-src") || "";
+            const status = item.querySelector(".result-status")?.textContent.trim() || "";
+            const season = item.querySelector(".result-season")?.textContent.trim() || "";
 
             if (title && href) {
-                results.push({ title, href: baseUrl + href, image });
+                results.push({ title, href: baseUrl + href, image, status, season });
             }
         });
 
@@ -37,7 +39,7 @@
         const doc = parser.parseFromString(html, "text/html");
         const episodes = [];
 
-        const items = doc.querySelectorAll("div.episode-list div");
+        const items = doc.querySelectorAll("div.episode-list div"); // Episode list structure
         items.forEach((item, index) => {
             const href = item.querySelector("a")?.getAttribute("href");
             if (href) {
