@@ -1,0 +1,10 @@
+{
+    "sourceName": "AnimePahe",
+    "author": "Seiike",
+    "iconUrl": "https://animepahe.ru/favicon.ico",
+    "version": "1.0.0",
+    "language": "English",
+    "baseUrl": "https://animepahe.ru",
+    "searchBaseUrl": "https://animepahe.ru/anime?search=%s",
+    "scriptUrl": "https://yourhostingpath/animepahe.js"
+}
