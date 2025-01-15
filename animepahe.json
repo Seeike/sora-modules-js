@@ -6,5 +6,5 @@
     "language": "English",
     "baseUrl": "https://animepahe.ru",
     "searchBaseUrl": "https://animepahe.ru/anime?search=%s",
-    "scriptUrl": "https://yourhostingpath/animepahe.js"
+    "scriptUrl": "https://raw.githubusercontent.com/Seeike/sora-modules-js/refs/heads/main/animepahe.js?token=GHSAT0AAAAAAC5C3QK4GKD2J5DLKFKWYYT4Z4IDP4Q"
 }
